@@ -44,7 +44,7 @@
     "topRight": "+",
     "bottomRight": "+",
     "bottomLeft": "+",
-    "vertical": "|",
-    "horizontal": "-"
+    "vertical": "│",
+    "horizontal": "─"
   }
 }

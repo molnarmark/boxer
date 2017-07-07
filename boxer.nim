@@ -1,12 +1,13 @@
-import json, strutils, colorize, sequtils
+import json, strutils, colorize, sequtils, tables
 
 let boxes = readFile("boxes.json").parseJson()
 
 proc generatePadding(inside, side: string, padding: int): string =
   result = ("\n" & side & (" ".repeat(inside.len - 6)) & side).repeat(padding)
 
-proc Boxer*(text: string, boxType: string, padding: int = 0): string =
+proc Boxer*(text: string, boxType: string = "round", padding: int = 0): string =
   let textLength = text.len
+  if not boxes.hasKey(boxType): raise newException(ValueError, "The box type was not found.")
   let topLeft = boxes[boxType]["topLeft"].getStr()
   let topRight = boxes[boxType]["topRight"].getStr()
   let bottomLeft = boxes[boxType]["bottomLeft"].getStr()
